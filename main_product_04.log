@@ -1,0 +1,12 @@
+2024-03-03 13:14:06,365:Cart:ERROR:Product must be a Product object.
+2024-03-03 13:25:29,822:Product:ERROR:The price cannot be less than or equal to zero
+2024-03-03 13:30:23,131:Cart:ERROR:Product must be a Product object.
+2024-03-03 13:32:23,416:Cart:ERROR:Product must be a Product object.
+2024-03-03 13:32:32,796:Cart:ERROR:Product must be a Product object.
+2024-03-03 13:48:28,082:Cart:ERROR:Product must be a Product object.
+2024-03-03 13:53:08,230:Cart:ERROR:Product must be a Product object.
+2024-03-03 13:53:37,397:Cart:ERROR:Product must be a Product object.
+2024-03-03 14:05:33,240:Cart:ERROR:Product must be a Product object.
+2024-03-03 14:13:05,847:Cart:ERROR:Product must be a Product object.
+2024-03-03 14:19:14,241:Product:ERROR:Price must be a number.
+2024-03-03 14:25:03,569:Product:ERROR:Name must be a string.

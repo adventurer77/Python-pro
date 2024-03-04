@@ -1,0 +1,4 @@
+2024-03-03 20:01:01,691:Dish:ERROR:Name must be a string.
+2024-03-03 20:01:15,708:Dish:ERROR:The price cannot be less than or equal to zero
+2024-03-03 20:02:59,224:Discount:ERROR:Value must be between 0 and 1.
+2024-03-03 20:03:19,508:Discount:ERROR:Value must be a float.
