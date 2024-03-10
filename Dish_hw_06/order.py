@@ -28,6 +28,7 @@ class Order:
         self.__dishes = []
         self.__quantities = []
         self.discount = discount
+        self._index = 0
 
     def add_dish(self, item: Dish, quantity: int = 1):
             
@@ -65,7 +66,32 @@ class Order:
         self.__dishes.extend(other_order.__dishes)
         self.__quantities.extend(other_order.__quantities)
         return self
+    
+    def __iter__(self):
 
+        return self
+    
+    def __next__(self):
+
+        if self._index < len(self.__dishes):
+            item1 = self.__dishes[self._index]
+            # item2 = self.__quantities[self._index]
+            self._index += 1
+            return item1 
+        
+        raise StopIteration
+    
+    
+    def __getitem__(self,index):
+         
+        if 0 <= index < len(self.__dishes):
+            return self.__dishes[index]
+        raise IndexError
+
+    def __len__(self):
+
+        return len(self.__dishes)
+    
     def __str__(self):
 
         items = '\n'.join([f'{dish.name} x {quantity} = {dish.price * quantity}' for dish, quantity in zip(self.__dishes, self.__quantities)])

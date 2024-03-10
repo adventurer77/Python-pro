@@ -36,8 +36,19 @@ if __name__ == '__main__':
      
         main_order += main_order2
 
-        print(main_order)
+        
+        print(len(main_order))
+
+        for i  in main_order:
+            print(i)
+        
+        print(main_order[1])
+
+
+        # print(main_order)
         # print(order.total_price())
+    except IndexError:
+        print("Index out of range. Please provide a valid index.")
     except Exception as e:
         print(e)
-
+    
