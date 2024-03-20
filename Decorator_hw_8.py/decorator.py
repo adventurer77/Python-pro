@@ -1,13 +1,38 @@
 
 # Task 1
 
+import random
 
-def apply_sum(numbers, func1):
-    return sum(func1(num) for num in numbers)
+def multiplication(item):
+    """
+       The function of multiplying an element by 2.
 
-numbers = [1, 2, 3, 4, 5]
-func1 = lambda x: x * 2
-print(apply_sum(numbers, func1))
+       Args:
+       item (int): the item to multiply.
+
+       Return:
+       int : the result of multiplying the element by 2.
+       """
+    return item * 2
+
+
+def change_sequence(sequence, func):
+    """
+       A function to change a sequence using a given function and calculate its sum.
+
+       Args:
+       sequence (list): The sequence to change.
+       func (function): A function that applies to each element of the sequence.
+
+       Return:
+       int : the sum of the elements of the sequence after applying the function.
+       """
+    return sum(func(item) for item in sequence)
+
+
+my_list = [random.randint(1, 20) for _ in range(10)]
+print(my_list)
+print(change_sequence(my_list, multiplication))
 
 
 # Task 2
