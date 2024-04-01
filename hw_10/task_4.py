@@ -4,11 +4,11 @@ class Figure(ABC):
 
     @abstractmethod
     def area():
-        raise NotImplementedError("No")
+        pass
 
     @abstractmethod
     def perimeter():
-        raise NotImplementedError("No")
+        pass
 
 
 class Circle(Figure):
