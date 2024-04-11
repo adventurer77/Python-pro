@@ -4,7 +4,7 @@ import re
 
 my_string = input("Enter>> ")
 
-pattern = r"R{1}[b]+[r]{1}"
+pattern =  r"Rb+r" 
 
 result = re.findall(pattern, my_string) # fRbbrsdfrbbrs RbRew3gsRbrf32erwbvweRbbbbbbr
 print (*result)
@@ -28,7 +28,7 @@ def valid_bank_card(my_card):
     Valid if the card numbers is correct, False otherwise.
     """
 
-    pattern = r"^[1-9]{4}-{1}[1-9]{4}-{1}[1-9]{4}-{1}[1-9]{4}$" 
+    pattern = r"^[0-9]{4}-{1}[0-9]{4}-{1}[0-9]{4}-{1}[0-9]{4}$" 
 
     match = re.search(pattern,my_card)
 
@@ -54,24 +54,23 @@ def checking_mail(email):
     Return:
       True if the email address is valid, False otherwise.
   """
-
   
   pattern = re.compile(r"""
-    ^[a-zA-Z0-9_.+-]+
-    @[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
+  ^[a-zA-z0-9](-?[a-zA-Z0-9_])+@[a-zA-z0-9_]+(\.[a-zA-Z0-9]+)*$
+                     
   """, re.X)
 
   # Checks whether the email matches the template.
   if not pattern.match(email):
     return False
 
-  # Checks that the first character of an email is not "_" and "-".
-  if email[0] in ["_", "-"]:
-    return False
+  # # Checks that the first character of an email is not "_" and "-".
+  # if email[0] in ["_", "-"]:
+  #   return False
 
-  # Checks whether the character "-" is repeated.
-  if "--" in email:
-    return False
+  # # Checks whether the character "-" is repeated.
+  # if "--" in email:
+  #   return False
 
   return True
 
@@ -79,12 +78,12 @@ email1 = "user@example.com"
 email2 = "user_name@example.com"
 email3 = "user-name@example.com"
 email4 = "_user@example.com"
-email5 = "user@examp--le..com"
+email5 = "us-er@exam_ple.com"
 
-print(f"Email {email1} valid: {checking_mail(email1)}")
-print(f"Email {email2} valid: {checking_mail(email2)}")
-print(f"Email {email3} valid: {checking_mail(email3)}")
-print(f"Email {email4} valid: {checking_mail(email4)}")
+# print(f"Email {email1} valid: {checking_mail(email1)}")
+# print(f"Email {email2} valid: {checking_mail(email2)}")
+# print(f"Email {email3} valid: {checking_mail(email3)}")
+# print(f"Email {email4} valid: {checking_mail(email4)}")
 print(f"Email {email5} valid: {checking_mail(email5)}")
 
 # Task 4
