@@ -15,7 +15,23 @@ console_handler.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
+
 class PriceError(Exception):
-    def __init__(self, price):
+    """
+    Користувацький виняток для некоректної ціни.
+    
+    Атрибути:
+        price (int | float): Некоректна ціна, що спричинила виняток.
+        message (str): Повідомлення про помилку.
+    """
+    def __init__(self, price: int | float):
+        if not isinstance(price, (int, float)):
+            raise TypeError("Price must be an integer or float.")
+        if price <= 0:
+            message = f"Price {price} is invalid. Price must be positive."
+        else:
+            message = f"Price {price} is invalid."
+        
         self.price = price
-        super().__init__(f"Price {price} is invalid")
+        self.message = message
+        super().__init__(self.message)
