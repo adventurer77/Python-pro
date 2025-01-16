@@ -1,4 +1,5 @@
 from product import Product
+from iter_cart import IterCart
 import logging
 
 logger = logging.getLogger(__name__)
@@ -16,57 +17,66 @@ console_handler.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
+
 class Cart:
 
     def __init__(self):
         self.__items = []
         self.__quantities = []
-        self._index = 0
 
     def add_product(self, item: Product, quantity=1):
         if not isinstance(item, Product):
-            raise TypeError("item must be a Product")
-        if not isinstance(quantity, int | float):
+            raise TypeError("Item must be a Product")
+        if not isinstance(quantity, (int, float)):
             raise TypeError("Quantity must be a number")
         if quantity <= 0:
             raise ValueError("Quantity must be positive")
 
-        self.__items.append(item)
-        self.__quantities.append(quantity)
-  
+        if item in self.__items:
+            index = self.__items.index(item)
+            self.__quantities[index] += quantity
+        else:
+            self.__items.append(item)
+            self.__quantities.append(quantity)
+
+    def del_product(self, item: Product):
+        if item not in self.__items:
+            raise ("Product not found in the cart")
+
+        index = self.__items.index(item)
+        del self.__items[index]
+        del self.__quantities[index]
 
     def total(self):
-        return sum(item.price * quantity for item, quantity in zip(self.__items, self.__quantities))
-    
+        return sum(
+            item.price * quantity
+            for item, quantity in zip(self.__items, self.__quantities)
+        )
+
     def __iadd__(self, other_cart):
-        
+
         if not isinstance(other_cart, Cart):
             raise TypeError("Can only combine with another Cart")
-        
+
         self.__items.extend(other_cart.__items)
         self.__quantities.extend(other_cart.__quantities)
-        
-        return self
-        
-    # def __getitem__(self, index):
-    #     return  self.__items[index], self.__quantities[index]
 
-    # def __len__(self):
-    #     return len(self.__items)
+        return self
+
+    def __getitem__(self, index):
+        return  self.__items[index], self.__quantities[index]
+
+    def __len__(self):
+        return len(self.__items)
 
     def __iter__(self):
-        return self
-    
-    def __next__(self):
-        if self._index < len(self.__items):
-            item1 = self.__items[self._index]
-            item2 = self.__quantities[self._index]
-            self._index += 1
-            return item1, item2
-        else:
-            raise StopIteration
+        return IterCart(self.__items, self.__quantities)
 
-        
     def __str__(self):
-        items = "\n".join([f"{item.name}: {quantity}" for item, quantity in zip(self.__items, self.__quantities)])
-        return f"Cart with: \n{items}\nTotal: {self.total()}"  
+        items = "\n".join(
+            [
+                f"{item.name}: {quantity}"
+                for item, quantity in zip(self.__items, self.__quantities)
+            ]
+        )
+        return f"Cart with: \n{items}\nTotal: {self.total()}"
