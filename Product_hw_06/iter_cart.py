@@ -12,6 +12,6 @@ class IterCart:
             item = self.__items[self._index]
             quantity = self.__quantities[self._index]
             self._index += 1
-            return {"Item": item, "Quantity": quantity}
+            return item, quantity
         else:
             raise StopIteration

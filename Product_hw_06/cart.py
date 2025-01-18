@@ -41,7 +41,7 @@ class Cart:
 
     def del_product(self, item: Product):
         if item not in self.__items:
-            raise ("Product not found in the cart")
+            raise ValueError("Product not found in the cart")
 
         index = self.__items.index(item)
         del self.__items[index]
